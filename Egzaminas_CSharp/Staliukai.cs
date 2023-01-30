@@ -37,8 +37,6 @@ namespace Restaurant_CSharp
         }
         public void StaliukuSarasas()
         {
-
-            int linesCount = 0;
             StreamReader reader = null;
             if (File.Exists("staliukai.csv"))
             {
@@ -46,6 +44,8 @@ namespace Restaurant_CSharp
                 List<string> ID = new List<string>();
                 List<string> vietuSkaicius = new List<string>();
                 List<string> uzimtumas = new List<string>();
+                int indexVietos = 0;
+                int indexUzimta = 0;
                 reader = new StreamReader(File.OpenRead("staliukai.csv"));
 
                 while (!reader.EndOfStream)
@@ -56,22 +56,22 @@ namespace Restaurant_CSharp
                     ID.Add(values[0]);
                     vietuSkaicius.Add(values[1]);
                     uzimtumas.Add(values[2]);
-
                 }
                 foreach (var item in ID)
                 {
-                    Console.Write(item, "");
+                    Console.Write(item + " ");
+                    if (indexVietos < vietuSkaicius.Count)
+                    {
+                        Console.Write(vietuSkaicius[indexVietos] + " ");
+                    }
+                    if (indexUzimta < uzimtumas.Count)
+                    {
+                        Console.Write(uzimtumas[indexUzimta] + "");
+                    }
+                    Console.WriteLine();
+                    indexVietos++;
+                    indexUzimta++;
                 }
-                foreach (var item in vietuSkaicius)
-                {
-                    Console.Write(item, "");
-                }
-                foreach (var item in uzimtumas)
-                {
-                    Console.Write(item);
-
-                }
-                Console.WriteLine();
             }
 
             else
@@ -83,7 +83,6 @@ namespace Restaurant_CSharp
 
     }
 }
-
 
 
 

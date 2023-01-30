@@ -15,11 +15,12 @@ namespace Restaurant_CSharp
 {
     class Program
     {
-        static void Main()
+      public static void Main()
         {
-            Choice choose = new Choice();
-            Menu Meniu = new Menu();
             Staliukai staleliai = new Staliukai();
+            Choice choose = new Choice();
+            
+
             Console.WriteLine(" M            E              N              I             U");
             Console.WriteLine("===========================================================");
             Console.WriteLine("1 - Atidaryti kavinuke");
@@ -30,8 +31,9 @@ namespace Restaurant_CSharp
             switch (ch)
             {
                 case 1:
-                    staleliai.StaliukuSarasas();
+                   
                     choose.tableReservation();
+                    
                     break;
                 case 2:
                     Console.WriteLine("Kavinuke uzdaryta  :(");

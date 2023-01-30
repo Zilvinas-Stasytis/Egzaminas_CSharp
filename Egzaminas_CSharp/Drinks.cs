@@ -13,18 +13,17 @@ using System.Windows.Markup;
 
 namespace Restaurant_CSharp
 {
-    public class Drinks : Menu
+    public class Drinks
     {
         public void Drink()
-        {/*
-            string filePath =
-            @"C:\Users\Koushik\Desktop\Questions\ConsoleApp\Data.csv";*/
+        {
             StreamReader reader = null;
             if (File.Exists("gerimai.csv"))
             {
                 reader = new StreamReader(File.OpenRead("gerimai.csv"));
                 List<string> Gerimas = new List<string>();
                 List<string> Kaina = new List<string>();
+                int indexGerimai = 0;
                 while (!reader.EndOfStream)
                 {
                     var line = reader.ReadLine();
@@ -35,8 +34,13 @@ namespace Restaurant_CSharp
                 }
                foreach (var item in Gerimas)
                 {
-                    Console.Write(item);
+                    Console.Write(item + " ");
+                    if (indexGerimai < Kaina.Count)
+                    {
+                        Console.Write(Kaina[indexGerimai]);
+                    }
                     Console.WriteLine();
+                    indexGerimai++; ;
                 }
 
             }

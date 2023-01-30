@@ -9,9 +9,10 @@ namespace Restaurant_CSharp
 {
     public class Choice
     {
+        
         public void tableReservation()
         {
-            Staliukai smallTable = new Staliukai();
+            Staliukai staleliai = new Staliukai();
             Console.WriteLine(" M            E              N              I             U");
             Console.WriteLine("===========================================================");
             Console.WriteLine("1 - Rezervuoti staliuka");
@@ -22,6 +23,7 @@ namespace Restaurant_CSharp
             switch (ch)
             {
                 case 1:
+                    staleliai.StaliukuSarasas();
                     stayingOrAway();
                     break;
                 case 2:
@@ -75,6 +77,8 @@ namespace Restaurant_CSharp
                     break;
             }
 
+
+            
         }
 
     }

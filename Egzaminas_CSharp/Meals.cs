@@ -11,18 +11,17 @@ using System.Diagnostics;
 
 namespace Restaurant_CSharp
 {
-    public class Meals : Menu
+    public class Meals
     {
         public void Meal()
-        {/*
-            string filePath =
-            @"C:\Users\Koushik\Desktop\Questions\ConsoleApp\Data.csv";*/
+        {
             StreamReader reader = null;
             if (File.Exists("patiekalai.csv"))
             {
                 reader = new StreamReader(File.OpenRead("patiekalai.csv"));
                 List<string> Valgis = new List<string>();
                 List<string> Kaina = new List<string>();
+                int indexPatiekalai = 0;
                 while (!reader.EndOfStream)
                 {
                     var line = reader.ReadLine();
@@ -32,10 +31,15 @@ namespace Restaurant_CSharp
                 }
                 foreach (var item in Valgis)
                 {
-                    Console.Write(item);
+                    Console.Write(item + " ");
+                    if (indexPatiekalai < Kaina.Count)
+                    {
+                        Console.Write(Kaina[indexPatiekalai]);
+                    }
                     Console.WriteLine();
+                    indexPatiekalai++;
                 }
-
+                
             }
             else
             {
