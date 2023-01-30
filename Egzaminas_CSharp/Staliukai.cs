@@ -1,51 +1,93 @@
-﻿namespace Restaurant_CSharp
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using System.Text;
+using System.Threading.Tasks;
+using System.Globalization;
+using CsvHelper;
+using CsvHelper.Configuration;
+using System.Diagnostics;
+using System.Security.Cryptography;
+using System.Collections.Immutable;
+using System.Collections;
+using System.Runtime.ExceptionServices;
+
+namespace Restaurant_CSharp
 {
     public class Staliukai
     {
-        string ID;
-        string vietuSkaicius;
-        bool uzimtumas;
-
-        public Staliukai(string _ID, string _vietuSkaicius, bool _uzimtumas)
+        public int[] Id = new int[] { };
+        public int[] VietuSkaicius = new int[] { };
+        public bool[] Uzimtumas = new bool[] { };
+        public int[] ID
         {
-            Console.WriteLine("Įveskite staliuko ID");
-           _ID = Console.ReadLine();
-            Console.WriteLine("Įveskite staliuko vietų skaičių");
-            _vietuSkaicius = Console.ReadLine();
-
-            ID = _ID;
-            vietuSkaicius = _vietuSkaicius;
-            uzimtumas = _uzimtumas;
+            get { return Id; }
+            set { Id = value; }
         }
-        public string Id
+        public int[] vietuSkaicius
         {
-            get { return ID; }
-            set { ID = value; }
+            get { return VietuSkaicius; }
+            set { VietuSkaicius = value; }
         }
-        public string VietuSkaicius
+        public bool[] uzimtumas
         {
-            get { return vietuSkaicius; }
-            set { vietuSkaicius = value; }
+            get { return Uzimtumas; }
+            set { Uzimtumas = value; }
         }
-        public bool Uzimtumas
-        {
-            get { return uzimtumas; }
-            set { uzimtumas = value; }
-        }
-    
         public void StaliukuSarasas()
         {
-            List<string> staliukuSarasas = new List<string>();
-            /*Console.WriteLine("Įveskite staliuko užimtumą");
-           Console.ReadLine(Convert.ToBoolean(uzimtumas));*/
-            string[] tables = {
-                ID,
-                vietuSkaicius
-            };
-            staliukuSarasas.AddRange(tables);
-            Console.WriteLine($"{ID}");
-            int ssk = staliukuSarasas.Count;
-            Console.WriteLine($"Staliukų yra {ssk}");
+
+            int linesCount = 0;
+            StreamReader reader = null;
+            if (File.Exists("staliukai.csv"))
+            {
+                /*Staliukai[] Staleliai = new string[,,] { };*/
+                List<string> ID = new List<string>();
+                List<string> vietuSkaicius = new List<string>();
+                List<string> uzimtumas = new List<string>();
+                reader = new StreamReader(File.OpenRead("staliukai.csv"));
+
+                while (!reader.EndOfStream)
+                {
+
+                    var line = reader.ReadLine();
+                    var values = line.Split(',');
+                    ID.Add(values[0]);
+                    vietuSkaicius.Add(values[1]);
+                    uzimtumas.Add(values[2]);
+
+                }
+                foreach (var item in ID)
+                {
+                    Console.Write(item, "");
+                }
+                foreach (var item in vietuSkaicius)
+                {
+                    Console.Write(item, "");
+                }
+                foreach (var item in uzimtumas)
+                {
+                    Console.Write(item);
+
+                }
+                Console.WriteLine();
+            }
+
+            else
+            {
+                Console.WriteLine("File doesn't exist");
+            }
+
         }
+
     }
 }
+
+
+
+
+
+
+
+
